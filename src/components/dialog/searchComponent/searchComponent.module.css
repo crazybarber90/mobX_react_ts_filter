@@ -13,7 +13,13 @@
 }
 
 .searchInput {
-  padding: 8px;
+  padding: 7px;
   outline: none;
   font-size: 16px;
+}
+
+@media (max-width: 1300px) {
+  .searchInput {
+    padding: 6px;
+  }
 }
