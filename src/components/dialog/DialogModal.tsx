@@ -14,9 +14,10 @@ const DialogModal = ({
   setShowDialog: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const [localSelectedItems, setLocalSelectedItems] = useState<string[]>(
-    ItemStore.selectedItems.slice()
+    ItemStore.selectedItems
   )
 
+  // Save choosen items and reset search and filter states
   const handleSave = action(() => {
     ItemStore.selectedItems = [...localSelectedItems]
     setShowDialog(false)

@@ -1,10 +1,6 @@
 import React from 'react'
 import styles from './customBtn.module.css'
-
-interface CustomBtnProps {
-  title: string
-  action: () => void
-}
+import { CustomBtnProps } from './types'
 
 const CustomBtn: React.FC<CustomBtnProps> = ({ title, action }) => {
   return (

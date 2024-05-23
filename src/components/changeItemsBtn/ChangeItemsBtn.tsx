@@ -3,8 +3,8 @@ import styles from './changeItemsBtn.module.css'
 import { ChangeItemsButtonProps } from './types'
 
 const ChangeItemsBtn: React.FC<ChangeItemsButtonProps> = ({
-  setShowDialog,
   showDialog,
+  setShowDialog,
 }) => {
   return (
     <button

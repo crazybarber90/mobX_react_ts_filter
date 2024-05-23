@@ -29,3 +29,9 @@ h3 {
   width: 100%;
   padding: 0 15px;
 }
+
+@media (max-height: 1024px) {
+  h3 {
+    padding: 0 10px;
+  }
+}

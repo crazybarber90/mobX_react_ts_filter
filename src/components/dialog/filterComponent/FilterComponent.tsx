@@ -6,8 +6,7 @@ import { action } from 'mobx'
 
 const FilterComponent: React.FC = observer(() => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value === 'no-filter' ? 0 : Number(e.target.value)
-    applyFilter(value)
+    applyFilter(Number(e.target.value))
   }
 
   const applyFilter = action((value: number) => {
@@ -26,16 +25,16 @@ const FilterComponent: React.FC = observer(() => {
         value={ItemStore.filter}
         onChange={handleFilterChange}
       >
-        <option className={styles.selectItem} value="no-filter">
+        <option className={styles.selectItem} value={0}>
           No filter
         </option>
-        <option className={styles.selectItem} value="10">
+        <option className={styles.selectItem} value={10}>
           {'>'}10
         </option>
-        <option className={styles.selectItem} value="100">
+        <option className={styles.selectItem} value={100}>
           {'>'}100
         </option>
-        <option className={styles.selectItem} value="200">
+        <option className={styles.selectItem} value={200}>
           {'>'}200
         </option>
       </select>

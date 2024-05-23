@@ -31,3 +31,9 @@
 .bottomButtons {
   padding: 5px 25px 0;
 }
+
+@media (max-height: 1024px) {
+  .searchFilterWrapper {
+    padding: 15px;
+  }
+}

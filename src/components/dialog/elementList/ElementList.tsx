@@ -2,18 +2,16 @@ import React from 'react'
 import styles from './elementList.module.css'
 import { observer } from 'mobx-react-lite'
 import ItemStore from '../../ItemStore'
-
-interface SelectedItemsProps {
-  localSelectedItems: string[]
-  setLocalSelectedItems: React.Dispatch<React.SetStateAction<string[]>>
-}
+import { SelectedItemsProps } from './types'
 
 const ElementList: React.FC<SelectedItemsProps> = ({
   localSelectedItems,
   setLocalSelectedItems,
 }) => {
   const handleCheckboxChange = (item: string) => {
+    // Check if item is checked
     if (localSelectedItems.includes(item)) {
+      // if checked => remove from local state
       setLocalSelectedItems(
         localSelectedItems.filter((selectedItem) => selectedItem !== item)
       )
