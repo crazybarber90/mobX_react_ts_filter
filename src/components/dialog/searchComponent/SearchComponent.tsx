@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './searchComponent.module.css'
+import { observer } from 'mobx-react-lite'
+import ItemStore from '../../ItemStore'
 
-interface SearchInputProps {
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
+const SearchComponent: React.FC = observer(() => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    ItemStore.setSearchQuery(e.target.value)
+  }
 
-const SearchComponent: React.FC<SearchInputProps> = ({ onChange }) => {
+  console.log('ITEMSTORE IZ SEAARCHHHH', ItemStore)
+
   return (
     <div className={styles.searchWrapper}>
       <label className={styles.searchLabel} htmlFor="search">
@@ -16,10 +19,11 @@ const SearchComponent: React.FC<SearchInputProps> = ({ onChange }) => {
         className={styles.searchInput}
         type="text"
         id="search"
-        onChange={onChange}
+        value={ItemStore.searchQuery}
+        onChange={handleSearchChange}
       />
     </div>
   )
-}
+})
 
 export default SearchComponent

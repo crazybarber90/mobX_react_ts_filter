@@ -5,6 +5,7 @@ import FilterComponent from './filterComponent/FilterComponent'
 import ElementList from './elementList/ElementList'
 import SelectedItems from '../selectedItems/SelectedItems'
 import CustomBtn from '../customBtn/CustomBtn'
+import ItemStore from '../ItemStore'
 
 const DialogModal = ({
   setShowDialog,
@@ -15,15 +16,15 @@ const DialogModal = ({
     <div className={styles.dialogContainer}>
       <p className={styles.dialogTitle}>Select items</p>
       <div className={styles.searchFilterWrapper}>
-        <SearchComponent onChange={() => console.log('Search')} value="" />
-        <FilterComponent onChange={() => console.log('Filter')} value="" />
+        <SearchComponent />
+        <FilterComponent />
       </div>
 
       <ElementList />
 
       <div className={styles.bottomItems}>
         <p className={styles.dialogLabel}>Current selected items </p>
-        <SelectedItems />
+        <SelectedItems localItems={true} />
       </div>
 
       <div className={styles.bottomButtons}>
