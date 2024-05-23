@@ -6,6 +6,7 @@ import ElementList from './elementList/ElementList'
 import SelectedItems from '../selectedItems/SelectedItems'
 import CustomBtn from '../customBtn/CustomBtn'
 import ItemStore from '../ItemStore'
+import { action } from 'mobx'
 
 const DialogModal = ({
   setShowDialog,
@@ -16,11 +17,12 @@ const DialogModal = ({
     ItemStore.selectedItems.slice()
   )
 
-  const handleSave = () => {
+  const handleSave = action(() => {
     ItemStore.selectedItems = [...localSelectedItems]
     setShowDialog(false)
-    //OVDE DA ISPRAZNIM STEJT searchQuery i filter
-  }
+    ItemStore.searchQuery = ''
+    ItemStore.filter = 0
+  })
 
   return (
     <div className={styles.dialogContainer}>
@@ -35,6 +37,7 @@ const DialogModal = ({
         setLocalSelectedItems={setLocalSelectedItems}
       />
 
+      {/* Bottom lits of choosen items */}
       <div className={styles.bottomItems}>
         <p className={styles.dialogLabel}>Current selected items </p>
         <SelectedItems

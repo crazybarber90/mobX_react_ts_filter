@@ -8,8 +8,6 @@ const SearchComponent: React.FC = observer(() => {
     ItemStore.setSearchQuery(e.target.value)
   }
 
-  console.log('ITEMSTORE IZ SEAARCHHHH', ItemStore)
-
   return (
     <div className={styles.searchWrapper}>
       <label className={styles.searchLabel} htmlFor="search">

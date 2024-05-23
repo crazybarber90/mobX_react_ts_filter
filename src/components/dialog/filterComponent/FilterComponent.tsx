@@ -2,13 +2,17 @@ import React from 'react'
 import styles from './filterComponent.module.css'
 import ItemStore from '../../ItemStore'
 import { observer } from 'mobx-react-lite'
+import { action } from 'mobx'
 
 const FilterComponent: React.FC = observer(() => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // ItemStore.setFilter(Number(e.target.value))
     const value = e.target.value === 'no-filter' ? 0 : Number(e.target.value)
-    ItemStore.setFilter(value)
+    applyFilter(value)
   }
+
+  const applyFilter = action((value: number) => {
+    ItemStore.setFilter(value)
+  })
 
   return (
     <div className={styles.filterWrapper}>

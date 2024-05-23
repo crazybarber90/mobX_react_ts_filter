@@ -1,5 +1,5 @@
 // src/components/ItemStore.ts
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, action } from 'mobx'
 
 class ItemStore {
   items: string[] = []
@@ -23,14 +23,17 @@ class ItemStore {
     })
   }
 
+  @action
   setSearchQuery(query: string) {
     this.searchQuery = query
   }
 
+  @action
   setFilter(filter: number) {
     this.filter = filter
   }
 
+  @action
   selectItem(item: string) {
     if (this.selectedItems.length < 3 && !this.selectedItems.includes(item)) {
       this.selectedItems.push(item)
