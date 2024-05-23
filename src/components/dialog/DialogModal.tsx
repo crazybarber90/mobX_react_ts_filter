@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './dialog.module.css'
 import SearchComponent from './searchComponent/SearchComponent'
 import FilterComponent from './filterComponent/FilterComponent'
@@ -12,6 +12,16 @@ const DialogModal = ({
 }: {
   setShowDialog: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
+  const [localSelectedItems, setLocalSelectedItems] = useState<string[]>(
+    ItemStore.selectedItems.slice()
+  )
+
+  const handleSave = () => {
+    ItemStore.selectedItems = [...localSelectedItems]
+    setShowDialog(false)
+    //OVDE DA ISPRAZNIM STEJT searchQuery i filter
+  }
+
   return (
     <div className={styles.dialogContainer}>
       <p className={styles.dialogTitle}>Select items</p>
@@ -20,15 +30,21 @@ const DialogModal = ({
         <FilterComponent />
       </div>
 
-      <ElementList />
+      <ElementList
+        localSelectedItems={localSelectedItems}
+        setLocalSelectedItems={setLocalSelectedItems}
+      />
 
       <div className={styles.bottomItems}>
         <p className={styles.dialogLabel}>Current selected items </p>
-        <SelectedItems localItems={true} />
+        <SelectedItems
+          localSelectedItems={localSelectedItems}
+          setLocalSelectedItems={setLocalSelectedItems}
+        />
       </div>
 
       <div className={styles.bottomButtons}>
-        <CustomBtn title="Save" action={() => console.log('Save')} />
+        <CustomBtn title="Save" action={handleSave} />
         <CustomBtn title="Cancel" action={() => setShowDialog(false)} />
       </div>
     </div>

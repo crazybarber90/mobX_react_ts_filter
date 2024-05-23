@@ -1,21 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './elementList.module.css'
 import { observer } from 'mobx-react-lite'
 import ItemStore from '../../ItemStore'
 
-const ElementList: React.FC = () => {
-  // FAKE DATA
-  // const checkboxes = Array.from({ length: 300 }, (_, index) => index + 1)
-  // const [checkedCount, setCheckedCount] = useState<number>(0)
+interface SelectedItemsProps {
+  localSelectedItems: string[]
+  setLocalSelectedItems: React.Dispatch<React.SetStateAction<string[]>>
+}
 
+const ElementList: React.FC<SelectedItemsProps> = ({
+  localSelectedItems,
+  setLocalSelectedItems,
+}) => {
   const handleCheckboxChange = (item: string) => {
-    if (ItemStore.selectedItems.includes(item)) {
-      ItemStore.deselectItem(item)
-      // setCheckedCount((prevCount) => prevCount - 1)
+    if (localSelectedItems.includes(item)) {
+      setLocalSelectedItems(
+        localSelectedItems.filter((selectedItem) => selectedItem !== item)
+      )
     } else {
-      if (ItemStore.selectedItems.length < 3) {
-        ItemStore.selectItem(item)
-        // setCheckedCount((prevCount) => prevCount + 1)
+      if (localSelectedItems.length < 3) {
+        setLocalSelectedItems([...localSelectedItems, item])
       }
     }
   }
@@ -29,10 +33,10 @@ const ElementList: React.FC = () => {
             type="checkbox"
             id={`checkbox-${item}`}
             onChange={() => handleCheckboxChange(item)}
-            checked={ItemStore.selectedItems.includes(item)}
+            checked={localSelectedItems.includes(item)}
             disabled={
-              ItemStore.selectedItems.length >= 3 &&
-              !ItemStore.selectedItems.includes(item)
+              localSelectedItems.length >= 3 &&
+              !localSelectedItems.includes(item)
             }
           />
           <label className={styles.checkboxLabel} htmlFor={`checkbox-${item}`}>
@@ -43,4 +47,5 @@ const ElementList: React.FC = () => {
     </div>
   )
 }
+
 export default observer(ElementList)

@@ -1,10 +1,6 @@
 import React from 'react'
 import styles from './changeItemsBtn.module.css'
-
-interface ChangeItemsButtonProps {
-  showDialog: boolean
-  setShowDialog: React.Dispatch<React.SetStateAction<boolean>>
-}
+import { ChangeItemsButtonProps } from './types'
 
 const ChangeItemsBtn: React.FC<ChangeItemsButtonProps> = ({
   setShowDialog,
@@ -15,7 +11,7 @@ const ChangeItemsBtn: React.FC<ChangeItemsButtonProps> = ({
       className={styles.greenButton}
       onClick={() => setShowDialog(!showDialog)}
     >
-      Change my choice
+      Change your choice
     </button>
   )
 }

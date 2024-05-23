@@ -48,4 +48,6 @@ class ItemStore {
   }
 }
 
-export default new ItemStore()
+const itemStore = new ItemStore()
+
+export default itemStore
